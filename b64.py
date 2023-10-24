@@ -34,7 +34,7 @@ def base64Encode(string):
     elif remainder % 2 == 1 :
         # Something went really wrong and we should stop
         print("Binary string is the wrong length. This should not happen.")
-        print("String length: " + len(binaryString))
+        print("String length: " + str(len(binaryString)))
         print(binaryString)
         sys.exit("Error: Bad length binary string")
 
