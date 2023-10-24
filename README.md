@@ -11,7 +11,7 @@ Create a module that offers base64 encode and decode
 4. Turn it into a module that can be imported.
 
 ## Where am I at?
-Step 1 is done.
+Step 2 is done.
 
 ## Can I use this?
 Yes, but why? There is no rational reason for you to use this. Still – if you're dead set on making bad decisions – it's licensed CC0. I'd kinda prefer you left my name out of it.
