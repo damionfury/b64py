@@ -7,14 +7,20 @@ symbols = "+/"
 
 base64Chars = capitalChars + lowercaseChars + digits + symbols
 
-def base64Encode(string):
+def base64Encode(input):
     outputString = ""
     binaryString = ""
     pad = ""
+    bytesIn = ""
+    
+    if type(input) == str:
+        bytesIn = bytes(input, 'utf-8')
+    else:
+        bytesIn = bytes(input)
 
     # Convert to a long string of binary
-    for char in string:
-        binaryString += f'{ord(char):08b}'
+    for byte in bytesIn:
+        binaryString += f'{byte:08b}'
         
     # Now determine if padding is needed
     remainder = len(binaryString) % 6
@@ -65,32 +71,71 @@ def base64Decode(string):
         output += chr(dec)
         
     return output
-
-def testEncode(string):
+    
+# Tests –––––––––––––––––––––––––––––––
+def testStringEncode():
+    string = "Hello World"
     
     correctEncode = base64.b64encode(string.encode()).decode("utf-8")
     test = base64Encode(string)
     
     if test != correctEncode:
-        print("Encode test failed.")
-        print("Correct: " + correctEncode)
-        print("Test: " + test)
+        print("❌ Encode string test")        
+        return False
     else:
-        print("Encode test passed.")
-        
-def testDecode(string):
+        print("✅ Encode string test")
+        return True
+
+def testStringDecode():
+    string = "SGVsbG8gV29ybGQ="
     
     correctDecode = base64.b64decode(string.encode()).decode("utf-8")
     test = base64Decode(string)
     
     if test != correctDecode:
-        print("Decode test failed.")
-        print("Correct: " + correctDecode)
-        print("Test: " + test)
+        print("❌ Decode string test")
+        return False
     else:
-        print("Decode test passed.")
+        print("✅ Decode string test")
+        return True
 
-testText = "Hello World"
-testB64 = "SGVsbG8gV29ybGQ="
+def testByteEncode():
+    testData = bytes.fromhex("db 0b e6 f4 83 4b fd 89 1c 59 eb 36 f4 82 48 c5")
+    
+    correctEncode = base64.b64encode(testData).decode("utf-8")
+    test = base64Encode(testData)
 
-testDecode(testB64)
+    if test != correctEncode:
+        print("❌ Encode byte test")
+        return False
+    else:
+        print("✅ Encode byte test")
+        return True
+        
+
+# Run test suite
+def runTests():
+    passCount = 0
+    failCount = 0
+    
+    if testStringEncode():
+        passCount += 1
+    else:
+        failCount += 1
+        
+    if testStringDecode():
+        passCount += 1
+    else:
+        failCount += 1
+        
+    if testByteEncode():
+        passCount += 1
+    else:
+        failCount += 1
+        
+    print("––––––––––––––––")
+    print("Results:")
+    print(f"✅ - {passCount}")
+    print(f"❌ - {failCount}")
+
+runTests()
