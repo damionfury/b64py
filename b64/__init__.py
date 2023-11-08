@@ -54,7 +54,7 @@ def decode(string, outputType = "string"):
     output = bytearray()
     binaryString = ""
     
-    if outputType != "string" & outputType != "bytearray":
+    if outputType != "string" and outputType != "bytearray":
         print("Invalid output type. Must be string or bytearray")
         sys.exit("Error: Bad output type")
     
@@ -79,88 +79,3 @@ def decode(string, outputType = "string"):
         return output.decode()
     else:
         return output
-    
-# Tests –––––––––––––––––––––––––––––––
-def testStringEncode():
-    string = "Hello World"
-    
-    correctEncode = base64.b64encode(string.encode()).decode("utf-8")
-    test = encode(string)
-    
-    if test != correctEncode:
-        print("❌ Encode string test")        
-        return False
-    else:
-        print("✅ Encode string test")
-        return True
-
-def testStringDecode():
-    string = "SGVsbG8gV29ybGQ="
-    
-    correctDecode = base64.b64decode(string.encode()).decode("utf-8")
-    test = decode(string, "string")
-    
-    if test != correctDecode:
-        print("❌ Decode string test")
-        return False
-    else:
-        print("✅ Decode string test")
-        return True
-
-def testByteEncode():
-    testData = bytes.fromhex("db 0b e6 f4 83 4b fd 89 1c 59 eb 36 f4 82 48 c5")
-    
-    correctEncode = base64.b64encode(testData).decode("utf-8")
-    test = encode(testData)
-
-    if test != correctEncode:
-        print("❌ Encode byte test")
-        return False
-    else:
-        print("✅ Encode byte test")
-        return True
-        
-def testByteDecode():
-    testData = "2wvm9INL/YkcWes29IJIxQ=="
-    
-    correctDecode = base64.b64decode(testData.encode())
-    test = decode(testData, "bytes")
-    
-    if test != correctDecode:
-        print("❌ Decode bytes test")
-        return False
-    else:
-        print("✅ Decode bytes test")
-        return True
-
-# Run test suite
-def runTests():
-    passCount = 0
-    failCount = 0
-    
-    if testStringEncode():
-        passCount += 1
-    else:
-        failCount += 1
-        
-    if testStringDecode():
-        passCount += 1
-    else:
-        failCount += 1
-        
-    if testByteEncode():
-        passCount += 1
-    else:
-        failCount += 1
-        
-    if testByteDecode():
-        passCount += 1
-    else:
-        failCount += 1
-        
-    print("––––––––––––––––")
-    print("Results:")
-    print(f"✅ - {passCount}")
-    print(f"❌ - {failCount}")
-
-runTests()

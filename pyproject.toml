@@ -1,0 +1,18 @@
+[project]
+name = "b64"
+version = "1.0.0"
+authors = [
+  { name="Mark Lyon", email="damionfury@gmail.com" },
+]
+description = "A reimplementation of base64 encode and decode"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/damionfury/b64"
+"Bug Tracker" = "https://github.com/damionfury/b64/issues"
