@@ -5,9 +5,9 @@ I learn better when I have a goal in mind. After seeing an article about how bas
 Create a module that offers base64 encode and decode
 
 ## Roadmap
-1. Make a function that can base64 encode a string
-2. Make a function that can base64 decode a string
-3. Modify the functions to work with any data
+1. Make a function that can base64 encode a string [done]
+2. Make a function that can base64 decode a string [done]
+3. Modify the functions to work with any data [in progress]
 4. Turn it into a module that can be imported.
 
 ## Where am I at?
