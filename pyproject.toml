@@ -12,6 +12,7 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+license = {text = "CC0"}
 
 [project.urls]
 "Homepage" = "https://github.com/damionfury/b64"
