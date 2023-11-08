@@ -48,8 +48,8 @@ def base64Encode(input):
         
     return outputString + pad
 
-def base64Decode(string):
-    output = ""
+def base64Decode(string, outputType = "string"):
+    output = bytearray()
     binaryString = ""
     
     for char in string:
@@ -67,10 +67,12 @@ def base64Decode(string):
         
     for i in range(0,len(binaryString),8):
         bin = binaryString[i:i+8]
-        dec = int(bin,2)
-        output += chr(dec)
+        output += int(bin,2).to_bytes(1, byteorder='big')
         
-    return output
+    if outputType == "string":
+        return output.decode()
+    else:
+        return output
     
 # Tests –––––––––––––––––––––––––––––––
 def testStringEncode():
@@ -90,7 +92,7 @@ def testStringDecode():
     string = "SGVsbG8gV29ybGQ="
     
     correctDecode = base64.b64decode(string.encode()).decode("utf-8")
-    test = base64Decode(string)
+    test = base64Decode(string, "string")
     
     if test != correctDecode:
         print("❌ Decode string test")
@@ -112,6 +114,18 @@ def testByteEncode():
         print("✅ Encode byte test")
         return True
         
+def testByteDecode():
+    testData = "2wvm9INL/YkcWes29IJIxQ=="
+    
+    correctDecode = base64.b64decode(testData.encode())
+    test = base64Decode(testData, "bytes")
+    
+    if test != correctDecode:
+        print("❌ Decode bytes test")
+        return False
+    else:
+        print("✅ Decode bytes test")
+        return True
 
 # Run test suite
 def runTests():
@@ -129,6 +143,11 @@ def runTests():
         failCount += 1
         
     if testByteEncode():
+        passCount += 1
+    else:
+        failCount += 1
+        
+    if testByteDecode():
         passCount += 1
     else:
         failCount += 1
