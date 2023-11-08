@@ -7,7 +7,9 @@ symbols = "+/"
 
 base64Chars = capitalChars + lowercaseChars + digits + symbols
 
-def base64Encode(input):
+__all__ = ['encode','decode']
+
+def encode(input):
     outputString = ""
     binaryString = ""
     pad = ""
@@ -48,9 +50,13 @@ def base64Encode(input):
         
     return outputString + pad
 
-def base64Decode(string, outputType = "string"):
+def decode(string, outputType = "string"):
     output = bytearray()
     binaryString = ""
+    
+    if outputType != "string" & outputType != "bytearray":
+        print("Invalid output type. Must be string or bytearray")
+        sys.exit("Error: Bad output type")
     
     for char in string:
         if char != "=":
@@ -79,7 +85,7 @@ def testStringEncode():
     string = "Hello World"
     
     correctEncode = base64.b64encode(string.encode()).decode("utf-8")
-    test = base64Encode(string)
+    test = encode(string)
     
     if test != correctEncode:
         print("❌ Encode string test")        
@@ -92,7 +98,7 @@ def testStringDecode():
     string = "SGVsbG8gV29ybGQ="
     
     correctDecode = base64.b64decode(string.encode()).decode("utf-8")
-    test = base64Decode(string, "string")
+    test = decode(string, "string")
     
     if test != correctDecode:
         print("❌ Decode string test")
@@ -105,7 +111,7 @@ def testByteEncode():
     testData = bytes.fromhex("db 0b e6 f4 83 4b fd 89 1c 59 eb 36 f4 82 48 c5")
     
     correctEncode = base64.b64encode(testData).decode("utf-8")
-    test = base64Encode(testData)
+    test = encode(testData)
 
     if test != correctEncode:
         print("❌ Encode byte test")
@@ -118,7 +124,7 @@ def testByteDecode():
     testData = "2wvm9INL/YkcWes29IJIxQ=="
     
     correctDecode = base64.b64decode(testData.encode())
-    test = base64Decode(testData, "bytes")
+    test = decode(testData, "bytes")
     
     if test != correctDecode:
         print("❌ Decode bytes test")

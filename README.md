@@ -8,7 +8,8 @@ Create a module that offers base64 encode and decode
 1. Make a function that can base64 encode a string [done]
 2. Make a function that can base64 decode a string [done]
 3. Modify the functions to work with any data [done]
-4. Turn it into a module that can be imported. [in progress]
+4. Turn it into a module that can be imported. [done]
+5. Make it throw errors properly [in progress]
 
 ## Where am I at?
 Step 3 is done. Now to learn how to make it a module.
@@ -17,4 +18,6 @@ Step 3 is done. Now to learn how to make it a module.
 Yes, but why? There is no rational reason for you to use this. Still – if you're dead set on making bad decisions – it's licensed CC0. I'd kinda prefer you left my name out of it.
 
 ## How do I use this?
-Right now, you can't. Eventually you could import it if you were crazy enough.
+Import it like any other package. It has two functions:
+- `encode()` - Accepts any object and returns a base64 encoded string representation
+- `decode()` - Accepts a base64 string and decodes it. Returns a string by default. Will return a bytearray if passed 'bytearray'
