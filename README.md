@@ -7,11 +7,14 @@ Create a module that offers base64 encode and decode
 ## Roadmap
 1. Make a function that can base64 encode a string [done]
 2. Make a function that can base64 decode a string [done]
-3. Modify the functions to work with any data [in progress]
-4. Turn it into a module that can be imported.
+3. Modify the functions to work with any data [done]
+4. Turn it into a module that can be imported. [in progress]
 
 ## Where am I at?
-Step 2 is done.
+Step 3 is done. Now to learn how to make it a module.
 
 ## Can I use this?
 Yes, but why? There is no rational reason for you to use this. Still – if you're dead set on making bad decisions – it's licensed CC0. I'd kinda prefer you left my name out of it.
+
+## How do I use this?
+Right now, you can't. Eventually you could import it if you were crazy enough.
