@@ -8,6 +8,7 @@ class TestEncode(unittest.TestCase):
         correctEncode = base64.b64encode(string.encode()).decode("utf-8")
         test = b64.encode(string)
         
+        print('Test: Encode string')
         self.assertEqual(correctEncode,test)
         
     def test_byte(self):
@@ -15,6 +16,7 @@ class TestEncode(unittest.TestCase):
         correctEncode = base64.b64encode(testData).decode("utf-8")
         test = b64.encode(testData)
         
+        print('Test: Encode bytes')
         self.assertEqual(correctEncode,test)
         
 if __name__ == '__main__':

@@ -55,12 +55,15 @@ def decode(string, outputType = "string"):
     binaryString = ""
     
     if outputType != "string" and outputType != "bytearray":
-        print("Invalid output type. Must be string or bytearray")
         raise ValueError('Bad output type: Must be "string" or "bytearray"')
     
     for char in string:
         if char != "=":
-            dec = base64Chars.index(char)
+            try:
+                dec = base64Chars.index(char)
+            except:
+                raise ValueError('Bad input string: Contains invalid characters')
+            
             binaryString += f'{dec:06b}'
         else:
             binaryString = binaryString[0:len(binaryString)-2]
