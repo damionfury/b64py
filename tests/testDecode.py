@@ -16,6 +16,12 @@ class TestDecode(unittest.TestCase):
         test = b64.decode(testData, "bytearray")
         
         self.assertEqual(correctDecode,test)
+    
+    def test_bad_output_type(self):
+        string = "SGVsbG8gV29ybGQ="
+        
+        self.assertRaises(ValueError,b64.decode, string, "dict")
+        
         
 if __name__ == '__main__':
     unittest.main()
