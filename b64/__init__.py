@@ -41,7 +41,7 @@ def encode(input):
         # Something went really wrong and we should stop
         print("Binary string is the wrong length. This should not happen.")
         print("String length: " + str(len(binaryString)))
-        sys.exit("Error: Bad length binary string")
+        raise ArithmeticError('Bad binary string length: Length is odd but must be even.') 
 
     for i in range(0,len(binaryString),6):
         bin = binaryString[i:i+6]
@@ -56,7 +56,7 @@ def decode(string, outputType = "string"):
     
     if outputType != "string" and outputType != "bytearray":
         print("Invalid output type. Must be string or bytearray")
-        sys.exit("Error: Bad output type")
+        raise ValueError('Bad output type: Must be "string" or "bytearray"')
     
     for char in string:
         if char != "=":
@@ -69,7 +69,7 @@ def decode(string, outputType = "string"):
         # Length should be evenly divisible by 8
         print("Decoded binary is the wrong length. This should not happen.")
         print("String length: " + str(len(binaryString)))
-        sys.exit("Error: Bad length binary string")
+        raise ArithmeticError('Bad binary string length: Must be evenly divisible by 8.')
         
     for i in range(0,len(binaryString),8):
         bin = binaryString[i:i+8]
